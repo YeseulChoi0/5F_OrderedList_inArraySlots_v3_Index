@@ -12,14 +12,49 @@ public class OrderedList_inArraySlots
 
 
     /**
-      @return the index of the first occurrence of 
+      @return the index of the first occurrence of
               \findMe in this list, or -1 if
               \findMe is absent from this list.
      */
     public int indexOf( Integer findMe) {
-        return -1;
+        //while style
+        // int high = size() - 1;
+        // int low = 0;
+        // while (low <= high){
+        //   int indexToCheck = (high + low)/2;
+        //   int currentNum = get(indexToCheck);
+        //   if (findMe.compareTo(currentNum) < 0){
+        //     high = indexToCheck - 1;
+        //   }else if (findMe.compareTo(currentNum) > 0){
+        //     low = indexToCheck + 1;
+        //   }else{
+        //     while (get(indexToCheck).compareTo(findMe) == 0){
+        //       if (indexToCheck == 0)
+        //         return 0;
+        //       indexToCheck--;
+        //     }
+        //     return indexToCheck + 1;
+        //   }
+        // }
+        // return -1;
+
+        return indexOf(findMe, 0, size() - 1);
     }
-    
+
+    public int indexOf(Integer findMe, int low, int high){
+      if (low > high)
+        return -1;
+      int indexToCheck = (high + low)/2;
+      int currentNum = get(indexToCheck);
+      if (findMe.compareTo(currentNum) < 0){
+        return indexOf(findMe, low, indexToCheck - 1);
+      }else if (findMe.compareTo(currentNum) > 0){
+        return indexOf(findMe, indexToCheck + 1, high);
+      }else{
+        return indexToCheck;
+      }
+    }
+
 
     // ------ code from previous assignments below here ----
 
